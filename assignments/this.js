@@ -1,9 +1,9 @@
 /* The for principles of "this";
 * in your own words. explain the four principle for the "this" keyword below.
 *
-* 1. Window Binding - The keyword 'this' is attached to the window. It returns the window object
-* 2. Implicit Binding - The keyword 'this' is implicitly referring to the immediate environment
-* 3.  New Binding - use new keyword to bind to a function
+* 1. Window Binding - The keyword 'this' is returns the window Object when used in a global environment/scope.
+* 2. Implicit Binding - The keyword 'this' is implicitly referring to the immediate environment. The object at the left before that dot is `this`.
+* 3.  New Binding -  this refers to the  instance of the object that is created and returned by the constructor function
 * 4. Explicit Binding - It is used when .call(), .apply() and .bind() are used on a function.
 *
 * write out a code example of each explanation above
