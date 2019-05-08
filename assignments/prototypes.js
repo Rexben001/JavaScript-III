@@ -16,16 +16,15 @@
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
 
-function GameObject(createdAt, name, dimensions) {
-  this.createdAt = createdAt;
-  this.name = name;
-  this.dimensions = dimensions;
+function GameObject(params) {
+  this.createdAt = params.createdAt;
+  this.name = params.name;
+  this.dimensions = params.dimensions;
 }
 
 GameObject.prototype.destroy = function() {
   return `${this.name} was removed from the game.`;
 };
-const newGame = new GameObject(new Date(), "Bne", 2345);
 /*
   === CharacterStats ===
   * healthPoints
@@ -33,16 +32,15 @@ const newGame = new GameObject(new Date(), "Bne", 2345);
   * should inherit destroy() from GameObject's prototype
 */
 
-function CharacterStats(createdAt, name, dimensions, healthPoints) {
-  GameObject.call(this, createdAt, name, dimensions);
-  this.healthPoints = healthPoints;
+function CharacterStats(params) {
+  GameObject.call(this, params);
+  this.healthPoints = params.healthPoints;
 }
 CharacterStats.prototype = Object.create(GameObject.prototype);
 CharacterStats.prototype.takeDamage = function() {
   return `${this.name} took damage`;
 };
 
-const newChar = new CharacterStats(new Date(), "Bne", 2345, 36);
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
   * team
@@ -53,11 +51,11 @@ const newChar = new CharacterStats(new Date(), "Bne", 2345, 36);
   * should inherit takeDamage() from CharacterStats
 */
 
-function Humanoid(createdAt, name, dimensions, healthPoints, team, weapons, language) {
-  CharacterStats.apply(this, [createdAt, name, dimensions, healthPoints]);
-  this.team = team;
-  this.weapons = weapons;
-  this.language = language;
+function Humanoid(params) {
+  CharacterStats.call(this, params);
+  this.team = params.team;
+  this.weapons = params.weapons;
+  this.language = params.language;
 }
 Humanoid.prototype = Object.create(CharacterStats.prototype);
 
@@ -65,8 +63,6 @@ Humanoid.prototype.greet = function() {
   return `${this.name} offers a greeting in ${this.language}`;
 };
 
-const newHuman = new Humanoid(new Date(), 'name', 'dimensions', 'healthPoints', 'team', 'weapons', 'language');
-console.log(newHuman.createdAt)
 
 /*
  * Inheritance chain: GameObject -> CharacterStats -> Humanoid
